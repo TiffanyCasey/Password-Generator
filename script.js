@@ -10,15 +10,15 @@ var alphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 var alphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 // Variable Declaration 
-var confirmLength
-var confirmSpecialCharacter
-var confirmNumericCharacter
-var confirmUpperCase
-var confirmLowerCase 
+var confirmLength;
+var confirmSpecialCharacter;
+var confirmNumericCharacter;
+var confirmUpperCase;
+var confirmLowerCase;
 
 // Prompt to confirm how many characters the user would like in their password
-function writePassword() {
-  var confirmLength = parseInt(prompt("How many characters would you like your password to contain?"))
+function generatePassword() {
+  var confirmLength = parseInt(prompt("How many characters would you like your password to contain?"));
 
   // Loop if answer is outside the parameters 
   while(confirmLength <= 7 || confirmLength >= 51) {
@@ -31,51 +31,51 @@ function writePassword() {
 
     // Determine parameters of password 
     var confirmSpecialCharacter = confirm("Click OK to confirm if you would like to include special characters");
-    var confirmNumericCharacter= confirm("Click OK to confirm if you would like to include numeric characters");    
-    var confirmLowerCase= confirm("Click OK to confirm if you would like to include lowercase characters");
-    var confirmUpperCase= confirm("Click OK to confirm if you would like to include uppercase characters");
-    // Loop if answer is outside the parameters 
-      while(confirmUpperCase === false && confirmLowerCase === false) {
-        alert("You must choose at least upper case or lower case");
-        var confirmLowerCase= confirm("Click OK to confirm if you would like to include lowercase characters");
-        var confirmUpperCase= confirm("Click OK to confirm if you would like to include uppercase characters");
+    var confirmNumericCharacter = confirm("Click OK to confirm if you would like to include numeric characters");    
+    var confirmLowerCase = confirm("Click OK to confirm if you would like to include lowercase characters");
+    var confirmUpperCase = confirm("Click OK to confirm if you would like to include uppercase characters");
+      // Loop if answer is outside the parameters 
+      while(confirmUpperCase === false && confirmLowerCase === false && confirmSpecialCharacter === false && confirmNumericCharacter === false) {
+        alert("You must choose at least one parameter");
+        var confirmSpecialCharacter = confirm("Click OK to confirm if you would like to include special characters");
+        var confirmNumericCharacter = confirm("Click OK to confirm if you would like to include numeric characters");    
+        var confirmLowerCase = confirm("Click OK to confirm if you would like to include lowercase characters");
+        var confirmUpperCase = confirm("Click OK to confirm if you would like to include uppercase characters");   
         } 
 
-      // Determine parameters of password 
-      var selectedCharacters;
+      // Assign an action to the password parameters 
+      var passwordCharacters;
 
-      if (confirmSpecialCharacter === true) {
-        var selectedCharacters = specialChar; 
+      if (confirmSpecialCharacter = true) {
+        passwordCharacters === specialChar; 
       }
       if (confirmNumericCharacter === true) {
-        var selectedCharacters = number; 
+        passwordCharacters = number; 
       }
       if (confirmUpperCase === true) {
-        var selectedCharacters = alphaUpper;
+        passwordCharacters = alphaUpper;
       }
       if (confirmLowerCase === true) {
-        var selectedCharacters = alphaLower;
+        passwordCharacters = alphaLower;
       }
+  
 
   // Empty string to be filled based on for loop selecting random characters from above array
-  var randomPassword = "";
-
+  var randomPassword = ""
+  
   for (var i = 0; i < confirmLength; i++) {
-    randomPassword = randomPassword + selectedCharacters[Math.floor(Math.random() * selectedCharacters.length)];
+    randomPassword = randomPassword + passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
   }
-  return randomPassword;
+console.log(randomPassword)
+ return randomPassword;
 
+}
 
-// Begin function to write password to #password input 
+// Write password to the #password input
 function writePassword() {
-var password = writePassword() 
-var passwordText = document.querySelector("#password");
-passwordText.value = password;
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
 }
-}
-
-// Add event listener to generate button
-
-
-
 
